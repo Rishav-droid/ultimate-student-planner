@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Student Planner</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo-container">
+                <i class="fas fa-calendar-check logo-icon"></i>
+                <h1>Ultimate Student Planner</h1>
+            </div>
+            <nav class="radio-inputs">
+                <label>
+                    <input class="radio-input" type="radio" name="nav" data-tab="tasks" checked>
+                    <span class="radio-tile">
+                        <span class="radio-icon">
+                            <i class="fas fa-tasks"></i>
+                        </span>
+                        <span class="radio-label">Tasks</span>
+                    </span>
+                </label>
+                <label>
+                    <input class="radio-input" type="radio" name="nav" data-tab="schedule">
+                    <span class="radio-tile">
+                        <span class="radio-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </span>
+                        <span class="radio-label">Schedule</span>
+                    </span>
+                </label>
+                <label>
+                    <input class="radio-input" type="radio" name="nav" data-tab="notes">
+                    <span class="radio-tile">
+                        <span class="radio-icon">
+                            <i class="fas fa-sticky-note"></i>
+                        </span>
+                        <span class="radio-label">Notes</span>
+                    </span>
+                </label>
+                <label>
+                    <input class="radio-input" type="radio" name="nav" data-tab="music">
+                    <span class="radio-tile">
+                        <span class="radio-icon">
+                            <i class="fas fa-music"></i>
+                        </span>
+                        <span class="radio-label">Music</span>
+                    </span>
+                </label>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <section id="tasks" class="tab-content active">
+                <h2><i class="fas fa-tasks"></i> Tasks</h2>
+                <div class="add-task">
+                    <input type="text" id="taskInput" placeholder="Add new task...">
+                    <button id="addTaskBtn"><i class="fas fa-plus"></i> Add</button>
+                </div>
+                <ul id="taskList"></ul>
+            </section>
+
+            <section id="schedule" class="tab-content">
+                <h2><i class="fas fa-calendar-alt"></i> Schedule</h2>
+                <div class="schedule-controls">
+                    <input type="date" id="scheduleDate" class="date-picker">
+                    <button id="addScheduleBtn"><i class="fas fa-plus"></i> Add Schedule</button>
+                </div>
+                <div class="schedule-list" id="scheduleList"></div>
+            </section>
+
+            <section id="notes" class="tab-content">
+                <h2><i class="fas fa-sticky-note"></i> Notes</h2>
+                <div class="notes-container">
+                    <div class="notes-tabs">
+                        <button class="tab-btn active" data-notes="text"><i class="fas fa-edit"></i> Text Notes</button>
+                        <button class="tab-btn" data-notes="pdf"><i class="fas fa-file-pdf"></i> PDF Notes</button>
+                    </div>
+                    
+                    <div id="textNotes" class="notes-content active">
+                        <textarea id="notesArea" placeholder="Write your notes here..."></textarea>
+                        <button id="saveNotesBtn"><i class="fas fa-save"></i> Save Notes</button>
+                    </div>
+
+                    <div id="pdfNotes" class="notes-content">
+                        <div class="pdf-upload">
+                            <label for="pdfFile" class="upload-label">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <span>Upload PDF</span>
+                                <input type="file" id="pdfFile" accept=".pdf" multiple>
+                            </label>
+                        </div>
+                        
+                        <div class="pdf-list">
+                            <h3>My PDFs</h3>
+                            <div id="pdfList" class="pdf-grid"></div>
+                        </div>
+
+                        <div id="pdfViewer" class="pdf-viewer">
+                            <div class="viewer-toolbar">
+                                <button id="closePdf"><i class="fas fa-times"></i></button>
+                                <span id="currentPdfName"></span>
+                                <div class="zoom-controls">
+                                    <button id="zoomOut"><i class="fas fa-search-minus"></i></button>
+                                    <button id="zoomIn"><i class="fas fa-search-plus"></i></button>
+                                </div>
+                            </div>
+                            <iframe id="pdfFrame" frameborder="0"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="music" class="tab-content">
+                <h2><i class="fas fa-music"></i> Music Player</h2>
+                <div class="music-container">
+                    <div class="music-upload">
+                        <label for="musicFile" class="upload-label">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span>Upload Music</span>
+                            <input type="file" id="musicFile" accept="audio/*" multiple>
+                        </label>
+                    </div>
+                    
+                    <div class="music-player">
+                        <div class="now-playing" id="nowPlaying">No track selected</div>
+                        <div class="controls">
+                            <button id="prevTrack"><i class="fas fa-backward"></i></button>
+                            <button id="playPause"><i class="fas fa-play"></i></button>
+                            <button id="nextTrack"><i class="fas fa-forward"></i></button>
+                        </div>
+                        <div class="volume-control">
+                            <i class="fas fa-volume-up"></i>
+                            <input type="range" id="volumeSlider" min="0" max="100" value="100">
+                        </div>
+                        <audio id="audioPlayer"></audio>
+                    </div>
+                    
+                    <div class="playlist-container">
+                        <h3>My Playlist</h3>
+                        <div id="playlist" class="playlist"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <button id="scrollTopBtn" class="scroll-top-btn">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <script src="script.js"></script>
+</body>
+</html>
